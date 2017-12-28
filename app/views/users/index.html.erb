@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+    <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th colspan="3"></th>
+          <th></th>
+          <th colspan="2">Post</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td>
+                    <%= link_to user, :title => "Show User Info", :class => "UserShow", :"data-userid" => user.id do %>
+                        <%= fa_icon "info 2x" %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= link_to edit_user_path(user), :title => "Edit User Info", :class => "UserEdit", :"data-userid" => user.id do %>
+                        <%= fa_icon "pencil 2x" %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= link_to user, method: :delete, :title => "Delete User", data: { confirm: 'Are you sure?' } do %>
+                        <%= fa_icon "trash 2x" %>
+                    <% end %>
+                </td>
+                <td></td>
+                <td>
+                    <%= link_to microposts_path, :title => "Add Post", :class => "addPost", :"data-userid" => user.id do %>
+                        <%= fa_icon "plus 2x" %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= link_to microposts_path, :title => "Show Post", :class => "showPost", :"data-userid" => user.id do %>
+                        <%= fa_icon "file-text-o 2x" %>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
+
+<div id="show" title="User Info" style="display: none ">
+    <p>
+        <strong>Name:</strong>
+        <p id="name"></p>
+    </p>
+    <p>
+        <strong>Email:</strong>
+        <p id="email"></p>
+    </p>
+</div>
+
+<div id="edit" title="Edit User" style="display: none;">
+    <p id="editId" style="display: none;"></p> 
+    
+    <p>
+        <strong>Name:</strong>
+        <p><input type="text" id="editName" /></p>
+    </p>
+    
+    <p>
+       <strong>Email:</strong>
+       <p><input type="email" id="editEmail" /></p>
+        
+    </p>
+    
+    <button id="updateUser">Save</button>
+</div>
+
+<div id="newPost" title="New Post" style="display: none;">
+    <p>
+      <label for="micropost_content"><strong>Content</strong></label>
+      <textarea id="micropost_content"></textarea>
+    </p>
+
+    <p>
+      <label for="micropost_user_id"><strong>User</strong></label>
+      <input type="text" id="micropost_user_id" disabled />
+    </p>
+
+    <button id="savePost">Save</button>
+</div>
+
+<div id="showPost" title="User Post" style="display: none;"></div>
