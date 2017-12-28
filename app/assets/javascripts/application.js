@@ -140,10 +140,7 @@ function save_edit_user(dataForm){
   			type: 'POST',
   			url: "/users/" + id,
   			data: "user[name]=" + name + "&user[email]=" + email + "&_method=patch",
-  			cache: false,  			
-  			success: function(response) {
-    			alert(response);
-  			}
+  			cache: false
 		});
 }
 
@@ -164,9 +161,6 @@ function save_new_post(dataForm){
   			type: 'POST',
   			url: "/microposts",
   			data: "micropost[content]=" + content + "&micropost[user_id]=" + id + "&_method=create",
-  			cache: false,  			
-  			success: function(response) {
-    			alert(response);
-  			}
+  			cache: false
 		});
 }
